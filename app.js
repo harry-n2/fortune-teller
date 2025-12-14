@@ -5,7 +5,7 @@ function showPage(pageId) {
   });
   document.getElementById(pageId).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
+  
   // 統計記録
   trackPageView(pageId);
 }
@@ -14,7 +14,7 @@ function showPage(pageId) {
 function trackPageView(pageId) {
   const stats = JSON.parse(localStorage.getItem('fortuneStats') || '{}');
   const today = new Date().toISOString().split('T')[0];
-
+  
   if (!stats[today]) {
     stats[today] = {
       pageViews: {},
@@ -24,7 +24,7 @@ function trackPageView(pageId) {
       courseSignups: 0
     };
   }
-
+  
   stats[today].pageViews[pageId] = (stats[today].pageViews[pageId] || 0) + 1;
   localStorage.setItem('fortuneStats', JSON.stringify(stats));
 }
@@ -32,7 +32,7 @@ function trackPageView(pageId) {
 function trackEvent(eventType) {
   const stats = JSON.parse(localStorage.getItem('fortuneStats') || '{}');
   const today = new Date().toISOString().split('T')[0];
-
+  
   if (!stats[today]) {
     stats[today] = {
       pageViews: {},
@@ -42,7 +42,7 @@ function trackEvent(eventType) {
       courseSignups: 0
     };
   }
-
+  
   stats[today][eventType] = (stats[today][eventType] || 0) + 1;
   localStorage.setItem('fortuneStats', JSON.stringify(stats));
 }
@@ -60,7 +60,7 @@ function initializeDateSelects() {
   const yearSelect = document.getElementById('year');
   const monthSelect = document.getElementById('month');
   const daySelect = document.getElementById('day');
-
+  
   const currentYear = new Date().getFullYear();
   for (let year = currentYear; year >= 1940; year--) {
     const option = document.createElement('option');
@@ -68,14 +68,14 @@ function initializeDateSelects() {
     option.textContent = `${year}年`;
     yearSelect.appendChild(option);
   }
-
+  
   for (let month = 1; month <= 12; month++) {
     const option = document.createElement('option');
     option.value = month;
     option.textContent = `${month}月`;
     monthSelect.appendChild(option);
   }
-
+  
   for (let day = 1; day <= 31; day++) {
     const option = document.createElement('option');
     option.value = day;
@@ -88,24 +88,399 @@ function initializeDateSelects() {
 function getElement(year, month, day) {
   const sum = (year + month * 10 + day) % 5;
   const elements = [
-    { name: '木', color: '#4CAF50', meaning: '成長の気質',
-      description: '新しいことにチャレンジする力を持つあなた。創造性と柔軟性が特徴です。' },
-    { name: '火', color: '#FF5722', meaning: '情熱の気質',
-      description: '情熱的で行動力のあるあなた。周りを明るく照らす存在です。' },
-    { name: '土', color: '#D4AF37', meaning: '安定の気質',
-      description: '安定感があり信頼される存在。調和を大切にするあなたです。' },
-    { name: '金', color: '#FFD700', meaning: '洗練の気質',
-      description: '美しいものを愛し、品格のあるあなた。芸術的センスに恵まれています。' },
-    { name: '水', color: '#2196F3', meaning: '柔軟の気質',
-      description: '柔軟で適応力が高いあなた。直感力に優れています。' }
+    { 
+      name: '木', 
+      color: '#4CAF50', 
+      meaning: '成長の気質',
+      description: '新しいことにチャレンジする力を持つあなた。創造性と柔軟性が特徴です。'
+    },
+    { 
+      name: '火', 
+      color: '#FF5722', 
+      meaning: '情熱の気質',
+      description: '情熱的で行動力のあるあなた。周りを明るく照らす存在です。'
+    },
+    { 
+      name: '土', 
+      color: '#D4AF37', 
+      meaning: '安定の気質',
+      description: '安定感があり信頼される存在。調和を大切にするあなたです。'
+    },
+    { 
+      name: '金', 
+      color: '#FFD700', 
+      meaning: '洗練の気質',
+      description: '美しいものを愛し、品格のあるあなた。芸術的センスに恵まれています。'
+    },
+    { 
+      name: '水', 
+      color: '#2196F3', 
+      meaning: '柔軟の気質',
+      description: '柔軟で適応力が高いあなた。直感力に優れています。'
+    }
   ];
   return elements[sum];
 }
 
-// （以降、ユーザー貼り付けのJS全文を入れてください）
+// 運勢データ生成
+function generateFortune(year, month, day) {
+  const element = getElement(year, month, day);
+  const seed = year + month + day;
+  
+  const totalLevel = (seed % 5) + 1;
+  const loveLevel = ((seed * 2) % 5) + 1;
+  const workLevel = ((seed * 3) % 5) + 1;
+  const moneyLevel = ((seed * 4) % 5) + 1;
+  const healthLevel = ((seed * 5) % 5) + 1;
+  
+  const fortunes = {
+    total: {
+      level: totalLevel,
+      messages: [
+        '今は準備の時期です。焦らず、じっくりと力を蓄えることで、大きな飛躍のチャンスが訪れます。自分磨きに時間を使いましょう。',
+        '運気は上昇傾向にあります。新しいチャレンジに最適な時期です。直感を信じて行動することで、素晴らしい結果が得られるでしょう。',
+        '安定した運気が続いています。これまでの努力が実を結び始める兆しが見えています。周囲との調和を大切にしてください。',
+        '絶好調の運気に恵まれています！あなたの魅力が最大限に輝く時期です。積極的に行動することで、想像以上の成果が得られます。',
+        '最高潮の運気です。願いが次々と叶う奇跡的な時期を迎えています。感謝の気持ちを忘れずに、その幸運を周りにも分け与えましょう。'
+      ]
+    },
+    love: {
+      level: loveLevel,
+      descriptions: [
+        '焦らず自分磨きの時期。内面を磨くことで、将来の素敵な出会いにつながります。',
+        'チャンス到来の予感。アンテナを高く張って、出会いの機会を逃さないで。',
+        '良い出会いに恵まれる時期。自然体で接することで、運命の人との距離が縮まります。',
+        '情熱的な恋の始まり。積極的にアプローチすることで、素晴らしい関係が築けます。',
+        '運命の人と出会える最高の時期。直感を信じて行動することで、理想の恋愛が実現します。'
+      ]
+    },
+    work: {
+      level: workLevel,
+      descriptions: [
+        '準備期間として有意義に。スキルアップに時間を使うことで、将来の飛躍につながります。',
+        '徐々に成果が現れ始める時期。諦めずに続けることが大切です。',
+        '努力が認められる時期。自信を持って自分の意見を伝えましょう。',
+        '大きなチャンスが訪れます。思い切った決断が成功への鍵となります。',
+        'キャリアの大飛躍の時。昇進や転職など、人生を変える出来事が待っています。'
+      ]
+    },
+    money: {
+      level: moneyLevel,
+      descriptions: [
+        '堅実な貯蓄を心がけて。無駄遣いを控え、将来に備える時期です。',
+        '臨時収入の可能性あり。思わぬところから収入が入るかもしれません。',
+        '安定した金運に恵まれます。計画的な資産形成を始めるのに良い時期です。',
+        '投資のチャンス。直感と情報収集のバランスを取って判断しましょう。',
+        '予想外の大きな収入が期待できます。ただし、感謝を忘れず賢く使いましょう。'
+      ]
+    },
+    health: {
+      level: healthLevel,
+      descriptions: [
+        'セルフケアを大切に。十分な睡眠と栄養バランスを意識しましょう。',
+        '体調管理に気をつけて。無理せず、自分のペースを守ることが大切です。',
+        '良好な健康状態が続きます。新しい運動習慣を始めるのに最適な時期です。',
+        'エネルギーに満ち溢れる時期。アクティブに過ごすことで、さらに運気がアップします。',
+        '最高の健康運。心身ともに絶好調。この勢いで新しいことにチャレンジしましょう。'
+      ]
+    }
+  };
+  
+  const luckyColors = [
+    { name: 'ローズゴールド', value: '#B76E79' },
+    { name: 'シャンパンゴールド', value: '#F7E7CE' },
+    { name: 'パールホワイト', value: '#F8F8FF' },
+    { name: 'ラベンダー', value: '#E6E6FA' },
+    { name: 'ミントグリーン', value: '#98D8C8' },
+    { name: 'コーラルピンク', value: '#F88379' },
+    { name: 'スカイブルー', value: '#87CEEB' }
+  ];
+  
+  const luckyItems = [
+    'パールのアクセサリー',
+    'シルクのスカーフ',
+    'クリスタルのオブジェ',
+    'お気に入りの香水',
+    'ゴールドのリング',
+    '天然石のブレスレット',
+    'お花のヘアアクセサリー',
+    '手帳とゴールドペン',
+    'アロマディフューザー',
+    'シルバーのネックレス'
+  ];
+  
+  const luckyDays = ['月曜日', '水曜日', '金曜日', '土曜日', '日曜日'];
+  
+  const luckyColorIndex = seed % luckyColors.length;
+  
+  return {
+    element,
+    total: {
+      level: totalLevel,
+      message: fortunes.total.messages[totalLevel - 1]
+    },
+    love: {
+      level: loveLevel,
+      description: fortunes.love.descriptions[loveLevel - 1]
+    },
+    work: {
+      level: workLevel,
+      description: fortunes.work.descriptions[workLevel - 1]
+    },
+    money: {
+      level: moneyLevel,
+      description: fortunes.money.descriptions[moneyLevel - 1]
+    },
+    health: {
+      level: healthLevel,
+      description: fortunes.health.descriptions[healthLevel - 1]
+    },
+    lucky: {
+      color: luckyColors[luckyColorIndex].name,
+      colorValue: luckyColors[luckyColorIndex].value,
+      number: (seed % 9) + 1,
+      item: luckyItems[seed % luckyItems.length],
+      day: luckyDays[seed % luckyDays.length]
+    },
+    advice: getAdvice(element.name)
+  };
+}
+
+// 星を生成
+function getStars(level) {
+  return '★'.repeat(level) + '☆'.repeat(5 - level);
+}
+
+// アドバイス生成
+function getAdvice(elementName) {
+  const advices = {
+    '木': '成長のエネルギーを持つあなた。新しいことにチャレンジすることで、さらなる飛躍が期待できます。自然に触れる時間を作ると、運気がアップします。朝の散歩や観葉植物を育てることもおすすめです。',
+    '火': '情熱的なエネルギーに満ちたあなた。その熱い想いを形にすることで、周囲を明るく照らすでしょう。創造的な活動が開運の鍵です。アートや音楽など、表現活動に時間を使いましょう。',
+    '土': '安定と調和のエネルギーを持つあなた。周囲との絆を大切にすることで、確実に幸運を掴めます。感謝の気持ちを忘れずに。家族や友人との時間を大切にし、信頼関係を深めましょう。',
+    '金': '洗練されたエネルギーを持つあなた。美しいものに触れることで、さらに運気が上昇します。品質の高いものを選ぶことを心がけて。美術館や素敵なカフェなど、上質な空間で過ごす時間を増やしましょう。',
+    '水': '柔軟なエネルギーに恵まれたあなた。流れに身を任せることで、思わぬチャンスが訪れます。直感を大切にしましょう。瞑想や水辺での散歩など、心を静める時間を持つことがおすすめです。'
+  };
+  return advices[elementName];
+}
+
+// 結果を表示
+function displayResult(fortune, year, month, day) {
+  document.getElementById('elementBadge').textContent = `${fortune.element.name}の性質 - ${fortune.element.meaning}`;
+  document.getElementById('resultTitle').textContent = fortune.element.description;
+  document.getElementById('birthDate').textContent = `${year}年${month}月${day}日生まれ`;
+  
+  document.getElementById('totalStars').textContent = getStars(fortune.total.level);
+  document.getElementById('totalText').textContent = fortune.total.message;
+  
+  document.getElementById('loveStars').textContent = getStars(fortune.love.level);
+  document.getElementById('loveDesc').textContent = fortune.love.description;
+  
+  document.getElementById('workStars').textContent = getStars(fortune.work.level);
+  document.getElementById('workDesc').textContent = fortune.work.description;
+  
+  document.getElementById('moneyStars').textContent = getStars(fortune.money.level);
+  document.getElementById('moneyDesc').textContent = fortune.money.description;
+  
+  document.getElementById('healthStars').textContent = getStars(fortune.health.level);
+  document.getElementById('healthDesc').textContent = fortune.health.description;
+  
+  document.getElementById('colorDot').style.backgroundColor = fortune.lucky.colorValue;
+  document.getElementById('luckyColor').textContent = fortune.lucky.color;
+  document.getElementById('luckyNumber').textContent = fortune.lucky.number;
+  document.getElementById('luckyItem').textContent = fortune.lucky.item;
+  document.getElementById('luckyDay').textContent = fortune.lucky.day;
+  
+  showPage('resultPage');
+  trackEvent('fortunes');
+}
+
+// フォーム送信処理
+document.getElementById('fortuneForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const year = parseInt(document.getElementById('year').value);
+  const month = parseInt(document.getElementById('month').value);
+  const day = parseInt(document.getElementById('day').value);
+  const email = document.getElementById('email').value;
+  
+  if (!year || !month || !day) {
+    alert('生年月日を全て入力してください');
+    return;
+  }
+  
+  // メール保存（オプション）
+  if (email) {
+    const users = JSON.parse(localStorage.getItem('fortuneUsers') || '[]');
+    users.push({
+      email,
+      birthDate: { year, month, day },
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('fortuneUsers', JSON.stringify(users));
+  }
+  
+  const fortune = generateFortune(year, month, day);
+  displayResult(fortune, year, month, day);
+});
+
+// 決済フォーム処理
+document.getElementById('paymentForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const name = document.getElementById('customerName').value;
+  const email = document.getElementById('customerEmail').value;
+  const phone = document.getElementById('customerPhone').value;
+  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+  
+  if (!name || !email || !phone) {
+    alert('必須項目を全て入力してください');
+    return;
+  }
+  
+  if (paymentMethod === 'credit') {
+    const cardNumber = document.getElementById('cardNumber').value;
+    const cardExpiry = document.getElementById('cardExpiry').value;
+    const cardCvc = document.getElementById('cardCvc').value;
+    const cardName = document.getElementById('cardName').value;
+    
+    if (!cardNumber || !cardExpiry || !cardCvc || !cardName) {
+      alert('カード情報を全て入力してください');
+      return;
+    }
+  }
+  
+  // 決済記録
+  const payments = JSON.parse(localStorage.getItem('fortunePayments') || '[]');
+  payments.push({
+    name,
+    email,
+    phone,
+    amount: 9800,
+    type: 'premium',
+    paymentMethod,
+    timestamp: new Date().toISOString()
+  });
+  localStorage.setItem('fortunePayments', JSON.stringify(payments));
+  
+  trackEvent('payments');
+  
+  // 決済完了アラート
+  alert('✨ お申し込みありがとうございます！\n\n確認メールを送信しました。\n24時間以内に担当者よりご連絡させていただきます。\n\nLINE登録もお忘れなく！');
+  
+  showPage('resultPage');
+  document.getElementById('paymentForm').reset();
+});
+
+// 講座申込フォーム処理
+document.getElementById('courseSignupForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const name = document.getElementById('courseName').value;
+  const email = document.getElementById('courseEmail').value;
+  const phone = document.getElementById('coursePhone').value;
+  const cardNumber = document.getElementById('courseCardNumber').value;
+  const cardExpiry = document.getElementById('courseCardExpiry').value;
+  const cardCvc = document.getElementById('courseCardCvc').value;
+  
+  if (!name || !email || !phone || !cardNumber || !cardExpiry || !cardCvc) {
+    alert('必須項目を全て入力してください');
+    return;
+  }
+  
+  // 講座登録記録
+  const courseSignups = JSON.parse(localStorage.getItem('fortuneCourseSignups') || '[]');
+  courseSignups.push({
+    name,
+    email,
+    phone,
+    plan: 'monthly',
+    timestamp: new Date().toISOString()
+  });
+  localStorage.setItem('fortuneCourseSignups', JSON.stringify(courseSignups));
+  
+  trackEvent('courseSignups');
+  
+  alert('🎓 講座へのお申し込みありがとうございます！\n\n初月無料でスタートします。\n確認メールを送信しましたので、ご確認ください。\n\n2ヶ月目から月額29,800円が課金されます。\nいつでも解約可能です。');
+  
+  showPage('freebiesPage');
+  document.getElementById('courseSignupForm').reset();
+});
+
+// LINE登録
+function registerLine() {
+  trackEvent('lineRegistrations');
+  
+  // モーダルを表示
+  document.getElementById('lineModal').classList.add('active');
+  
+  // 実際のLINE登録URL（実装時に変更してください）
+  // window.open('https://line.me/R/ti/p/@yourlineid', '_blank');
+}
+
+function closeLineModal() {
+  document.getElementById('lineModal').classList.remove('active');
+}
+
+// モーダル外クリックで閉じる
+document.getElementById('lineModal').addEventListener('click', (e) => {
+  if (e.target.id === 'lineModal') {
+    closeLineModal();
+  }
+});
+
+// 特典表示
+function viewFreebie(type) {
+  if (type === 'guide') {
+    showPage('guidePage');
+  } else if (type === 'manga') {
+    showPage('mangaPage');
+  }
+}
+
+// カード番号フォーマット
+document.getElementById('cardNumber')?.addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\s/g, '');
+  let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+  e.target.value = formattedValue;
+});
+
+document.getElementById('courseCardNumber')?.addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\s/g, '');
+  let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+  e.target.value = formattedValue;
+});
+
+// 有効期限フォーマット
+document.getElementById('cardExpiry')?.addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\//g, '');
+  if (value.length >= 2) {
+    e.target.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+  } else {
+    e.target.value = value;
+  }
+});
+
+document.getElementById('courseCardExpiry')?.addEventListener('input', (e) => {
+  let value = e.target.value.replace(/\//g, '');
+  if (value.length >= 2) {
+    e.target.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+  } else {
+    e.target.value = value;
+  }
+});
 
 // 初期化
 initializeDateSelects();
 
+// 統計をコンソールに表示（開発用）
+console.log('%c四柱推命プレミアム鑑定', 'font-size: 20px; color: #ffd700; font-weight: bold;');
+console.log('%c統計データを確認するには showStats() を実行してください', 'color: #d4af37;');
+console.log('%cLocalStorageのデータ:', 'color: #4caf50;');
+console.log('- fortuneStats: 統計データ');
+console.log('- fortuneUsers: ユーザーデータ');
+console.log('- fortunePayments: 決済データ');
+console.log('- fortuneCourseSignups: 講座登録データ');
+
 // ページ読み込み時の統計記録
 trackPageView('topPage');
+
