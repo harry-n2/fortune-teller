@@ -1,1040 +1,601 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>四柱推命プレミアム鑑定 | あなたの運命を変える本格鑑定</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>四柱推命プレミアム鑑定</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+  <!-- 星空 -->
   <div class="stars"></div>
-  <div class="container">
 
-    <!-- トップページ -->
-    <div class="page active" id="topPage">
+  <div class="container">
+    <!-- TOP PAGE -->
+    <section id="topPage" class="page active">
       <header class="header">
-        <div class="logo">✧ 四柱推命プレミアム鑑定 ✧</div>
-        <p class="tagline">1万人以上が人生を変えた本格鑑定</p>
+        <div class="logo">FOUR PILLARS</div>
+        <div class="tagline">PREMIUM FORTUNE READING</div>
         <div class="trust-badges">
-          <span class="badge">⭐ 満足度98.7%</span>
-          <span class="badge">💎 プロ鑑定士監修</span>
-          <span class="badge">🔒 安心決済</span>
+          <div class="badge">累計鑑定 10,000+</div>
+          <div class="badge">満足度 98%</div>
+          <div class="badge">LINE特典あり</div>
         </div>
       </header>
 
       <div class="hero-section">
-        <h2 class="hero-title">今なら<span class="highlight">無料</span>で<br>運命鑑定が受けられます</h2>
-        <p class="hero-subtitle">さらに公式LINE登録で豪華3大特典プレゼント🎁</p>
+        <h1 class="hero-title">
+          あなたの運命を、今日から変える<br />
+          <span class="highlight">プレミアム鑑定</span>
+        </h1>
+        <p class="hero-subtitle">
+          生年月日だけで、あなたの「本質」「恋愛」「仕事」「金運」「健康」を可視化します。
+        </p>
 
         <div class="cta-buttons">
-          <button class="cta-primary" onclick="showPage('inputPage')">
-            <span class="cta-icon">✨</span>
-            <span>無料で今すぐ鑑定する</span>
+          <button class="cta-primary" type="button" onclick="showPage('inputPage')">
+            <span class="cta-icon">🔮</span>
+            無料で鑑定を始める
             <span class="cta-arrow">→</span>
           </button>
-          <button class="cta-secondary" onclick="showPage('benefitsPage')">
-            <span>3大特典の内容を見る</span>
+
+          <button class="cta-secondary" type="button" onclick="registerLine()">
+            <span class="cta-icon">💚</span>
+            公式LINEで特典を受け取る
           </button>
         </div>
       </div>
 
-      <div class="social-proof">
-        <h3 class="section-heading">📣 ご利用者様の声</h3>
+      <section class="social-proof">
+        <h2 class="section-heading">お客様の声</h2>
         <div class="testimonials">
           <div class="testimonial">
             <div class="stars-rating">★★★★★</div>
-            <p>"鑑定結果が驚くほど当たっていて、人生の指針になりました！"</p>
-            <span class="user-info">- M.T様 (28歳・会社員)</span>
+            <p>“鑑定結果が驚くほど当たっていて、人生の指針になりました！”</p>
+            <div class="user-info">- M.T様（28歳・会社員）</div>
           </div>
           <div class="testimonial">
             <div class="stars-rating">★★★★★</div>
-            <p>"特典の資料がとても分かりやすく、毎日実践しています"</p>
-            <span class="user-info">- A.K様 (32歳・自営業)</span>
+            <p>“特典の資料がとても分かりやすく、毎日実践しています”</p>
+            <div class="user-info">- A.K様（32歳・自営業）</div>
           </div>
           <div class="testimonial">
             <div class="stars-rating">★★★★★</div>
-            <p>"講座を受講して、本当に運気が変わりました！"</p>
-            <span class="user-info">- S.Y様 (25歳・美容師)</span>
+            <p>“講座を受講して、本当に運気が変わりました！”</p>
+            <div class="user-info">- S.Y様（25歳・美容師）</div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- 特典紹介ページ -->
-    <div class="page" id="benefitsPage">
-      <div class="card">
-        <button class="back-button" onclick="showPage('topPage')">← 戻る</button>
+      <!-- 公式LINE登録（ページ内に確実に配置） -->
+      <section class="line-section">
+        <h2 class="section-heading">公式LINE登録で特典を受け取る</h2>
 
-        <h2 class="page-title">🎁 公式LINE登録 3大特典</h2>
-        <p class="page-subtitle">今だけ！登録者全員にプレゼント</p>
-
-        <div class="benefits-grid">
-          <div class="benefit-card premium">
-            <div class="benefit-number">特典1</div>
-            <div class="benefit-icon">📖</div>
-            <h3>完全保存版<br>運気アップガイドブック</h3>
-            <p class="benefit-desc">プロの鑑定士が教える、誰でも今日から実践できる開運メソッド50選（PDF 42ページ）</p>
-            <div class="benefit-value">💰 通常価格：¥9,800</div>
-          </div>
-
-          <div class="benefit-card premium">
-            <div class="benefit-number">特典2</div>
-            <div class="benefit-icon">🎨</div>
-            <h3>運命を変える<br>開運マンガ</h3>
-            <p class="benefit-desc">ストーリー形式で楽しく学べる！四柱推命の基礎から応用まで（全12話）</p>
-            <div class="benefit-value">💰 通常価格：¥7,800</div>
-          </div>
-
-          <div class="benefit-card premium">
-            <div class="benefit-number">特典3</div>
-            <div class="benefit-icon">🎓</div>
-            <h3>個別鑑定講座<br>ご招待チケット</h3>
-            <p class="benefit-desc">月額29,800円の講座を初月無料でお試し！プロ鑑定士があなたをサポート</p>
-            <div class="benefit-value">💰 初月無料：¥29,800→¥0</div>
+        <div class="line-benefits">
+          <p class="line-text">登録で「3大特典」をすぐにお届けします。</p>
+          <div class="benefits-mini">
+            <div class="mini-benefit">特典1：鑑定の読み解きガイド</div>
+            <div class="mini-benefit">特典2：運気アップ習慣リスト</div>
+            <div class="mini-benefit">特典3：限定コンテンツ</div>
           </div>
         </div>
 
-        <div class="total-value">
-          <p>合計価値：<span class="strike">¥47,400</span></p>
-          <p class="free-text">→ 今なら<span class="highlight-big">完全無料</span>！</p>
-        </div>
-
-        <button class="cta-primary large" onclick="showPage('inputPage')">
-          <span class="cta-icon">🎁</span>
-          <span>無料特典を受け取る</span>
-          <span class="cta-arrow">→</span>
+        <button class="line-button" type="button" onclick="registerLine()">
+          <span class="line-icon">💚</span>
+          公式LINEに登録する
         </button>
-      </div>
-    </div>
 
-    <!-- 入力ページ -->
-    <div class="page" id="inputPage">
+        <p class="line-note">ボタン押下でQR表示（PC）／リンクでLINE起動（スマホ）</p>
+      </section>
+
+      <footer class="footer">
+        <div>あなたの運命は、あなた自身が切り拓くもの</div>
+        <div class="copyright">© 2024 Four Pillars Fortune Premium</div>
+      </footer>
+    </section>
+
+    <!-- INPUT PAGE -->
+    <section id="inputPage" class="page">
       <div class="card">
-        <button class="back-button" onclick="showPage('topPage')">← 戻る</button>
-
         <div class="progress-bar">
-          <div class="progress-step active">1. 生年月日入力</div>
-          <div class="progress-step">2. 鑑定結果</div>
-          <div class="progress-step">3. 特典受取</div>
+          <div class="progress-step active">① 生年月日入力</div>
+          <div class="progress-step">② 結果表示</div>
+          <div class="progress-step">③ 特典受取</div>
         </div>
 
-        <h2 class="section-title">
-          <span class="title-decoration">◆</span>
-          あなたの生年月日を教えてください
-          <span class="title-decoration">◆</span>
-        </h2>
-        <p class="section-subtitle">運命の扉を開くための第一歩</p>
+        <button class="back-button" type="button" onclick="showPage('topPage')">← 戻る</button>
+
+        <h2 class="page-title">無料鑑定（簡易版）</h2>
+        <p class="page-subtitle">生年月日を入力すると、あなたの五行と運勢を表示します。</p>
 
         <form id="fortuneForm" class="fortune-form">
-          <div class="form-group">
-            <label for="year">生まれ年</label>
-            <select id="year" required>
-              <option value="">選択してください</option>
-            </select>
-          </div>
-
           <div class="form-row">
+            <div class="form-group">
+              <label for="year">年</label>
+              <select id="year" required>
+                <option value="">選択</option>
+              </select>
+            </div>
             <div class="form-group">
               <label for="month">月</label>
               <select id="month" required>
-                <option value="">月</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="day">日</label>
-              <select id="day" required>
-                <option value="">日</option>
+                <option value="">選択</option>
               </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="email">メールアドレス（任意）</label>
-            <input type="email" id="email" placeholder="example@email.com">
-            <p class="form-note">※ 鑑定結果をメールでも受け取れます</p>
+            <label for="day">日</label>
+            <select id="day" required>
+              <option value="">選択</option>
+            </select>
           </div>
 
-          <button type="submit" class="submit-button">
-            <span>✨ 無料で鑑定結果を見る</span>
+          <div class="form-group">
+            <label for="email">メール（任意）</label>
+            <input id="email" type="email" placeholder="example@email.com" />
+            <div class="form-note">結果の保存・特典案内に利用できます（任意）</div>
+          </div>
+
+          <button class="submit-button" type="submit">
+            今すぐ鑑定する
             <span class="button-shine"></span>
           </button>
 
-          <p class="privacy-note">🔒 個人情報は厳重に管理され、外部に開示されることはありません</p>
+          <div class="privacy-note">※ 個人情報は第三者に提供しません。</div>
         </form>
       </div>
-    </div>
+    </section>
 
-    <!-- 鑑定結果ページ -->
-    <div class="page" id="resultPage">
+    <!-- RESULT PAGE -->
+    <section id="resultPage" class="page">
       <div class="card">
         <div class="progress-bar">
-          <div class="progress-step completed">1. 生年月日入力</div>
-          <div class="progress-step active">2. 鑑定結果</div>
-          <div class="progress-step">3. 特典受取</div>
+          <div class="progress-step completed">① 生年月日入力</div>
+          <div class="progress-step active">② 結果表示</div>
+          <div class="progress-step">③ 特典受取</div>
         </div>
 
+        <button class="back-button" type="button" onclick="showPage('inputPage')">← 入力に戻る</button>
+
         <div class="result-header">
-          <div class="element-badge" id="elementBadge"></div>
-          <h2 class="result-title" id="resultTitle"></h2>
-          <p class="birth-date" id="birthDate"></p>
+          <div id="elementBadge" class="element-badge">-</div>
+          <h2 id="resultTitle" class="result-title">-</h2>
+          <div id="birthDate" class="birth-date">-</div>
         </div>
 
         <div class="fortune-summary">
           <div class="summary-card">
             <div class="summary-icon">🌟</div>
-            <h3>総合運</h3>
-            <div class="fortune-stars" id="totalStars"></div>
-            <p class="summary-text" id="totalText"></p>
+            <div id="totalStars" class="fortune-stars">★★★★★</div>
+            <p id="totalText" class="summary-text">-</p>
           </div>
         </div>
 
         <div class="divider"></div>
 
-        <div class="detailed-fortune">
-          <h3 class="subsection-title">
-            <span class="gold-line"></span>
-            詳細運勢
-            <span class="gold-line"></span>
-          </h3>
+        <div class="subsection-title">
+          <span class="gold-line"></span> 各運勢 <span class="gold-line"></span>
+        </div>
 
-          <div class="fortune-grid">
-            <div class="fortune-card">
-              <div class="fortune-icon">💖</div>
-              <h4>恋愛運</h4>
-              <div class="fortune-stars" id="loveStars"></div>
-              <p class="fortune-desc" id="loveDesc"></p>
-            </div>
+        <div class="fortune-grid">
+          <div class="fortune-card">
+            <div class="fortune-icon">💘</div>
+            <h4>恋愛運</h4>
+            <div id="loveStars" class="fortune-stars">-</div>
+            <p id="loveDesc" class="fortune-desc">-</p>
+          </div>
 
-            <div class="fortune-card">
-              <div class="fortune-icon">💼</div>
-              <h4>仕事運</h4>
-              <div class="fortune-stars" id="workStars"></div>
-              <p class="fortune-desc" id="workDesc"></p>
-            </div>
+          <div class="fortune-card">
+            <div class="fortune-icon">💼</div>
+            <h4>仕事運</h4>
+            <div id="workStars" class="fortune-stars">-</div>
+            <p id="workDesc" class="fortune-desc">-</p>
+          </div>
 
-            <div class="fortune-card">
-              <div class="fortune-icon">💰</div>
-              <h4>金運</h4>
-              <div class="fortune-stars" id="moneyStars"></div>
-              <p class="fortune-desc" id="moneyDesc"></p>
-            </div>
+          <div class="fortune-card">
+            <div class="fortune-icon">💰</div>
+            <h4>金運</h4>
+            <div id="moneyStars" class="fortune-stars">-</div>
+            <p id="moneyDesc" class="fortune-desc">-</p>
+          </div>
 
-            <div class="fortune-card">
-              <div class="fortune-icon">✨</div>
-              <h4>健康運</h4>
-              <div class="fortune-stars" id="healthStars"></div>
-              <p class="fortune-desc" id="healthDesc"></p>
-            </div>
+          <div class="fortune-card">
+            <div class="fortune-icon">🧘</div>
+            <h4>健康運</h4>
+            <div id="healthStars" class="fortune-stars">-</div>
+            <p id="healthDesc" class="fortune-desc">-</p>
           </div>
         </div>
 
         <div class="divider"></div>
 
-        <div class="lucky-section">
-          <h3 class="subsection-title">
-            <span class="gold-line"></span>
-            ラッキーアイテム
-            <span class="gold-line"></span>
-          </h3>
+        <div class="subsection-title">
+          <span class="gold-line"></span> ラッキー要素 <span class="gold-line"></span>
+        </div>
 
-          <div class="lucky-grid">
-            <div class="lucky-item">
-              <div class="lucky-label">🎨 カラー</div>
-              <div class="lucky-value">
-                <span class="color-dot" id="colorDot"></span>
-                <span id="luckyColor"></span>
-              </div>
+        <div class="lucky-grid">
+          <div class="lucky-item">
+            <div class="lucky-label">ラッキーカラー</div>
+            <div class="lucky-value">
+              <span id="colorDot" class="color-dot"></span>
+              <span id="luckyColor">-</span>
             </div>
-
-            <div class="lucky-item">
-              <div class="lucky-label">🔢 ナンバー</div>
-              <div class="lucky-value" id="luckyNumber"></div>
-            </div>
-
-            <div class="lucky-item">
-              <div class="lucky-label">🌸 アイテム</div>
-              <div class="lucky-value" id="luckyItem"></div>
-            </div>
-
-            <div class="lucky-item">
-              <div class="lucky-label">🌙 デー</div>
-              <div class="lucky-value" id="luckyDay"></div>
-            </div>
+          </div>
+          <div class="lucky-item">
+            <div class="lucky-label">ラッキーナンバー</div>
+            <div class="lucky-value"><span id="luckyNumber">-</span></div>
+          </div>
+          <div class="lucky-item">
+            <div class="lucky-label">ラッキーアイテム</div>
+            <div class="lucky-value"><span id="luckyItem">-</span></div>
+          </div>
+          <div class="lucky-item">
+            <div class="lucky-label">ラッキーデー</div>
+            <div class="lucky-value"><span id="luckyDay">-</span></div>
           </div>
         </div>
 
-        <div class="upgrade-banner">
-          <h3>🎁 さらに詳しい鑑定を受けませんか？</h3>
-          <p>プロの鑑定士による個別鑑定で、あなたの人生を劇的に変えるチャンス！</p>
-          <div class="upgrade-features">
-            <div class="feature">✓ 60分の個別鑑定</div>
-            <div class="feature">✓ 今後1年の詳細運勢</div>
-            <div class="feature">✓ 恋愛・仕事の具体的アドバイス</div>
-            <div class="feature">✓ LINE相談し放題（1ヶ月）</div>
-          </div>
-          <div class="price-info">
-            <span class="original-price">通常価格 ¥29,800</span>
-            <span class="special-price">→ 初回限定 ¥9,800</span>
-          </div>
-          <button class="cta-primary" onclick="showPage('paymentPage')">
-            <span>💎 プレミアム鑑定を申し込む</span>
+        <div class="divider"></div>
+
+        <!-- 公式LINE登録（結果ページにも配置） -->
+        <section class="line-section">
+          <h2 class="section-heading">公式LINE登録で特典を受け取る</h2>
+          <p class="line-text">登録で「3大特典」をすぐにお届けします。</p>
+          <button class="line-button" type="button" onclick="registerLine()">
+            <span class="line-icon">💚</span>
+            公式LINEに登録する
           </button>
-        </div>
+          <p class="line-note">ボタン押下でQR表示（PC）／リンクでLINE起動（スマホ）</p>
+        </section>
 
         <div class="divider"></div>
 
-        <div class="line-section">
-          <h3 class="subsection-title">
-            <span class="gold-line"></span>
-            無料特典を受け取る
-            <span class="gold-line"></span>
-          </h3>
-
-          <div class="line-benefits">
-            <p class="line-text">公式LINEに登録すると、今すぐ3大特典がもらえます！</p>
-            <div class="benefits-mini">
-              <div class="mini-benefit">📖 開運ガイド</div>
-              <div class="mini-benefit">🎨 開運マンガ</div>
-              <div class="mini-benefit">🎓 講座招待券</div>
-            </div>
-          </div>
-
-          <button class="line-button" onclick="registerLine()">
-            <span class="line-icon">📱</span>
-            <span>公式LINEで特典を受け取る</span>
+        <div class="cta-buttons" style="margin-top: 10px;">
+          <button class="cta-primary" type="button" onclick="showPage('freebiesPage')">
+            <span class="cta-icon">🎁</span>
+            無料特典ページへ
             <span class="cta-arrow">→</span>
           </button>
 
-          <p class="line-note">※ クリック後、LINEアプリが開きます</p>
+          <button class="cta-secondary" type="button" onclick="showPage('paymentPage')">
+            <span class="cta-icon">✨</span>
+            プレミアム鑑定（有料）を見る
+          </button>
         </div>
-
-        <button class="retry-button" onclick="showPage('topPage')">
-          <span>トップに戻る</span>
-        </button>
       </div>
-    </div>
+    </section>
 
-    <!-- 決済ページ -->
-    <div class="page" id="paymentPage">
+    <!-- PAYMENT PAGE -->
+    <section id="paymentPage" class="page">
       <div class="card">
-        <button class="back-button" onclick="showPage('resultPage')">← 鑑定結果に戻る</button>
+        <button class="back-button" type="button" onclick="showPage('resultPage')">← 結果へ戻る</button>
 
-        <h2 class="page-title">💎 プレミアム鑑定のお申し込み</h2>
+        <h2 class="page-title">プレミアム鑑定（有料）</h2>
+        <p class="page-subtitle">詳細鑑定＋資料＋特典付き</p>
 
         <div class="order-summary">
-          <h3>ご注文内容</h3>
+          <h3>注文サマリー</h3>
           <div class="order-item">
-            <span>プレミアム個別鑑定（60分）</span>
-            <span class="order-price">¥9,800</span>
+            <span>プレミアム鑑定</span>
+            <span class="order-price">9,800円</span>
           </div>
           <div class="order-bonus">
-            <span>🎁 特典：LINE相談1ヶ月無料</span>
-            <span class="bonus-value">(¥19,800相当)</span>
+            <span>特典資料</span>
+            <span class="bonus-value">無料</span>
           </div>
           <div class="order-total">
-            <span>合計金額</span>
-            <span class="total-price">¥9,800<span class="tax-note">（税込）</span></span>
+            <span>合計</span>
+            <span class="total-price">9,800円 <span class="tax-note">(税込)</span></span>
           </div>
         </div>
 
         <form id="paymentForm" class="payment-form">
-          <h3 class="form-section-title">お客様情報</h3>
+          <div class="form-section-title">お客様情報</div>
 
           <div class="form-group">
-            <label for="customerName">お名前 *</label>
-            <input type="text" id="customerName" required placeholder="山田 花子">
+            <label for="customerName">お名前</label>
+            <input id="customerName" type="text" required />
           </div>
 
           <div class="form-group">
-            <label for="customerEmail">メールアドレス *</label>
-            <input type="email" id="customerEmail" required placeholder="example@email.com">
+            <label for="customerEmail">メール</label>
+            <input id="customerEmail" type="email" required />
           </div>
 
           <div class="form-group">
-            <label for="customerPhone">電話番号 *</label>
-            <input type="tel" id="customerPhone" required placeholder="090-1234-5678">
+            <label for="customerPhone">電話番号</label>
+            <input id="customerPhone" type="tel" required />
           </div>
 
-          <h3 class="form-section-title">お支払い方法</h3>
+          <div class="form-section-title">お支払い方法</div>
 
           <div class="payment-methods">
             <label class="payment-method">
-              <input type="radio" name="paymentMethod" value="credit" checked>
-              <span class="method-card">
-                <span class="method-icon">💳</span>
-                <span>クレジットカード</span>
-              </span>
+              <input type="radio" name="paymentMethod" value="credit" checked />
+              <div class="method-card">
+                <span class="method-icon">💳</span> クレジットカード
+              </div>
             </label>
+
             <label class="payment-method">
-              <input type="radio" name="paymentMethod" value="bank">
-              <span class="method-card">
-                <span class="method-icon">🏦</span>
-                <span>銀行振込</span>
-              </span>
+              <input type="radio" name="paymentMethod" value="bank" />
+              <div class="method-card">
+                <span class="method-icon">🏦</span> 銀行振込
+              </div>
             </label>
           </div>
 
-          <div id="creditCardSection">
+          <div class="form-section-title">カード情報（クレジット選択時）</div>
+
+          <div class="form-group">
+            <label for="cardNumber">カード番号</label>
+            <input id="cardNumber" type="text" placeholder="1234 5678 9012 3456" />
+          </div>
+
+          <div class="form-row">
             <div class="form-group">
-              <label for="cardNumber">カード番号 *</label>
-              <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+              <label for="cardExpiry">有効期限</label>
+              <input id="cardExpiry" type="text" placeholder="MM/YY" />
             </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="cardExpiry">有効期限 *</label>
-                <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
-              </div>
-
-              <div class="form-group">
-                <label for="cardCvc">セキュリティコード *</label>
-                <input type="text" id="cardCvc" placeholder="123" maxlength="4">
-              </div>
-            </div>
-
             <div class="form-group">
-              <label for="cardName">カード名義 *</label>
-              <input type="text" id="cardName" placeholder="HANAKO YAMADA">
+              <label for="cardCvc">CVC</label>
+              <input id="cardCvc" type="text" placeholder="123" />
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cardName">名義</label>
+            <input id="cardName" type="text" placeholder="TARO YAMADA" />
           </div>
 
           <div class="security-note">
-            <span class="lock-icon">🔒</span>
-            <p>お客様の情報は、最高レベルのSSL暗号化技術により保護されています。安心してご利用ください。</p>
+            <div class="lock-icon">🔒</div>
+            <div>
+              <div style="font-weight:bold; color:#4caf50;">安全な決済</div>
+              <div style="font-size:0.9rem; color:rgba(255,255,255,0.85);">
+                カード情報は保存しません（デモ実装）
+              </div>
+            </div>
           </div>
 
           <div class="terms-checkbox">
             <label>
-              <input type="checkbox" id="agreeTerms" required>
-              <span><a href="#" onclick="alert('利用規約の内容（実際のサイトではここに詳細を記載）'); return false;">利用規約</a>と<a href="#" onclick="alert('プライバシーポリシーの内容'); return false;">プライバシーポリシー</a>に同意します</span>
+              <input type="checkbox" required />
+              <span>利用規約に同意します（デモ）</span>
             </label>
           </div>
 
-          <button type="submit" class="submit-button large">
-            <span>🔒 ¥9,800を決済する</span>
+          <button class="submit-button" type="submit">
+            申し込む（デモ）
             <span class="button-shine"></span>
           </button>
-
-          <p class="payment-note">※ 決済完了後、確認メールが送信されます</p>
         </form>
       </div>
-    </div>
+    </section>
 
-    <!-- 無料特典ページ（マンガ・資料） -->
-    <div class="page" id="freebiesPage">
+    <!-- FREEBIES PAGE -->
+    <section id="freebiesPage" class="page">
       <div class="card">
-        <button class="back-button" onclick="showPage('resultPage')">← 戻る</button>
+        <button class="back-button" type="button" onclick="showPage('resultPage')">← 結果へ戻る</button>
 
-        <h2 class="page-title">🎁 無料特典ダウンロード</h2>
-        <p class="page-subtitle">LINE登録ありがとうございます！</p>
+        <h2 class="page-title">無料特典</h2>
+        <p class="page-subtitle">登録後に受け取れる特典の一部を確認できます。</p>
 
         <div class="freebies-grid">
-          <!-- 特典1: ガイドブック -->
           <div class="freebie-card" onclick="viewFreebie('guide')">
-            <div class="freebie-icon">📖</div>
-            <h3>運気アップ<br>ガイドブック</h3>
-            <p>42ページの完全保存版</p>
-            <button class="view-button">今すぐ読む →</button>
+            <div class="freebie-icon">📘</div>
+            <h3>鑑定の読み解きガイド</h3>
+            <p>五行・運勢の解釈がすぐ分かる</p>
+            <button class="view-button" type="button">見る</button>
           </div>
 
-          <!-- 特典2: マンガ -->
           <div class="freebie-card" onclick="viewFreebie('manga')">
-            <div class="freebie-icon">🎨</div>
-            <h3>開運マンガ<br>全12話</h3>
-            <p>楽しく学べるストーリー</p>
-            <button class="view-button">今すぐ読む →</button>
-          </div>
-
-          <!-- 特典3: 講座招待 -->
-          <div class="freebie-card" onclick="showPage('coursePage')">
-            <div class="freebie-icon">🎓</div>
-            <h3>個別鑑定講座<br>無料体験</h3>
-            <p>初月¥29,800→¥0</p>
-            <button class="view-button premium">申し込む →</button>
+            <div class="freebie-icon">📖</div>
+            <h3>マンガで分かる運気UP</h3>
+            <p>実践まで落ちない導線</p>
+            <button class="view-button premium" type="button">見る</button>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ガイドブック表示 -->
-    <div class="page" id="guidePage">
+        <div class="course-cta">
+          <button class="cta-primary large" type="button" onclick="showPage('coursePage')">
+            <span class="cta-icon">🎓</span>
+            講座ページを見る
+            <span class="cta-arrow">→</span>
+          </button>
+          <div class="cta-note">※初月無料のデモ画面です</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDE PAGE -->
+    <section id="guidePage" class="page">
       <div class="card document-view">
-        <button class="back-button" onclick="showPage('freebiesPage')">← 特典一覧に戻る</button>
+        <button class="back-button" type="button" onclick="showPage('freebiesPage')">← 戻る</button>
 
         <div class="document-header">
-          <h2 class="document-title">📖 運気アップガイドブック</h2>
-          <p class="document-subtitle">〜 誰でも今日から実践できる開運メソッド50選 〜</p>
+          <h2 class="document-title">鑑定の読み解きガイド</h2>
+          <div class="document-subtitle">五行・運勢を「行動」に変えるための要点</div>
         </div>
 
         <div class="document-content">
           <div class="doc-chapter">
-            <h3 class="chapter-title">第1章：朝の開運習慣</h3>
+            <div class="chapter-title">1. 五行の基本</div>
             <div class="doc-section">
-              <h4>✨ 朝日を浴びる（最重要）</h4>
-              <p>朝日には強力な浄化パワーが宿っています。起きてから30分以内に5分間、朝日を浴びることで、1日の運気が大きく変わります。</p>
-              <div class="point-box">
-                <strong>💡 ポイント</strong>
-                <ul>
-                  <li>窓を開けて深呼吸しながら</li>
-                  <li>感謝の気持ちを持って</li>
-                  <li>今日の目標を3つ心の中で唱える</li>
-                </ul>
-              </div>
+              <h4>あなたの五行は「性格の傾向」です</h4>
+              <p>五行は未来を固定するものではなく、選択の癖を見える化します。</p>
             </div>
-
-            <div class="doc-section">
-              <h4>💧 白湯を飲む</h4>
-              <p>朝一番の白湯は、体内の「気」の流れを整えます。内側から温めることで、運気の巡りが良くなります。</p>
+            <div class="point-box">
+              <strong>ポイント</strong>
+              <ul>
+                <li>強みを伸ばすと運気が乗る</li>
+                <li>弱みは「環境」で補える</li>
+              </ul>
             </div>
-
-            <div class="doc-section">
-              <h4>🌸 鏡の前で笑顔を作る</h4>
-              <p>鏡は運気を映す神聖なもの。毎朝3分、鏡の前で笑顔を作ることで、幸運を引き寄せる「引き寄せ波動」が高まります。</p>
-            </div>
-          </div>
-
-          <div class="doc-chapter">
-            <h3 class="chapter-title">第2章：お部屋の開運術</h3>
-            <div class="doc-section">
-              <h4>🚪 玄関を常にキレイに</h4>
-              <p>玄関は「気」の入口です。ここが汚れていると、良い運気が入ってきません。</p>
-              <div class="checklist">
-                <div class="check-item">□ 靴は出しっぱなしにしない</div>
-                <div class="check-item">□ 週に1度は水拭き</div>
-                <div class="check-item">□ 生花や観葉植物を置く</div>
-                <div class="check-item">□ 玄関マットは明るい色を選ぶ</div>
-              </div>
-            </div>
-
-            <div class="doc-section">
-              <h4>🛏️ ベッドルームの配置</h4>
-              <p>良質な睡眠は運気アップの基本。ベッドの位置を変えるだけで、人生が好転することも。</p>
-              <div class="point-box warning">
-                <strong>⚠️ 避けるべき配置</strong>
-                <ul>
-                  <li>ドアの正面にベッド</li>
-                  <li>窓の真下にベッド</li>
-                  <li>鏡がベッドを映す配置</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="doc-chapter">
-            <h3 class="chapter-title">第3章：金運アップの秘訣</h3>
-            <div class="doc-section">
-              <h4>💰 お財布の扱い方</h4>
-              <p>お財布は「お金の家」です。大切に扱うことで、お金が喜んで集まってきます。</p>
-              <div class="money-tips">
-                <div class="tip-card">
-                  <span class="tip-icon">✓</span>
-                  <span>レシートは毎日整理</span>
-                </div>
-                <div class="tip-card">
-                  <span class="tip-icon">✓</span>
-                  <span>お札は向きを揃える</span>
-                </div>
-                <div class="tip-card">
-                  <span class="tip-icon">✓</span>
-                  <span>夜は高い場所に置く</span>
-                </div>
-                <div class="tip-card">
-                  <span class="tip-icon">✓</span>
-                  <span>2〜3年で買い替え</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="doc-section">
-              <h4>🌟 金運カラーを取り入れる</h4>
-              <p>あなたの五行に合った金運カラーを日常に取り入れましょう。</p>
-              <div class="color-guide">
-                <div class="color-item">
-                  <div class="color-sample" style="background: #FFD700;"></div>
-                  <span>木の性質：グリーン・ブルー</span>
-                </div>
-                <div class="color-item">
-                  <div class="color-sample" style="background: #FF6B6B;"></div>
-                  <span>火の性質：レッド・オレンジ</span>
-                </div>
-                <div class="color-item">
-                  <div class="color-sample" style="background: #D4AF37;"></div>
-                  <span>土の性質：イエロー・ベージュ</span>
-                </div>
-                <div class="color-item">
-                  <div class="color-sample" style="background: #C0C0C0;"></div>
-                  <span>金の性質：ホワイト・シルバー</span>
-                </div>
-                <div class="color-item">
-                  <div class="color-sample" style="background: #4A90E2;"></div>
-                  <span>水の性質：ブラック・ネイビー</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="doc-chapter">
-            <h3 class="chapter-title">第4章：恋愛運を高める方法</h3>
-            <div class="doc-section">
-              <h4>💖 ピンクパワーの活用</h4>
-              <p>ピンク色には恋愛運を引き寄せる強力なパワーがあります。</p>
-              <div class="love-actions">
-                <div class="action-item">💄 ピンクのリップやチーク</div>
-                <div class="action-item">🌸 ピンクの小物を持ち歩く</div>
-                <div class="action-item">💐 ピンクの花を飾る</div>
-                <div class="action-item">🎀 下着にピンクを取り入れる</div>
-              </div>
-            </div>
-
-            <div class="doc-section">
-              <h4>🌙 恋愛成就のおまじない</h4>
-              <p>新月の夜に行う、強力な恋愛成就の儀式をご紹介します。</p>
-              <div class="ritual-steps">
-                <div class="step">
-                  <span class="step-number">1</span>
-                  <span>新月の夜、白い紙に理想の相手を具体的に書く</span>
-                </div>
-                <div class="step">
-                  <span class="step-number">2</span>
-                  <span>ピンクの封筒に入れる</span>
-                </div>
-                <div class="step">
-                  <span class="step-number">3</span>
-                  <span>枕の下に1週間置く</span>
-                </div>
-                <div class="step">
-                  <span class="step-number">4</span>
-                  <span>次の満月の夜に燃やす（安全な場所で）</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="doc-chapter">
-            <h3 class="chapter-title">第5章：あなただけの開運日</h3>
-            <div class="doc-section">
-              <h4>📅 大開運日カレンダー</h4>
-              <p>これらの日に重要な行動を起こすと、成功率が格段にアップします。</p>
-              <div class="calendar-note">
-                <p><strong>天赦日（てんしゃにち）</strong><br>年に5〜6回しかない最強の開運日。新しいことを始めるのに最適。</p>
-                <p><strong>一粒万倍日（いちりゅうまんばいび）</strong><br>一粒の籾が万倍にも実る日。投資や貯金開始に最適。</p>
-                <p><strong>寅の日</strong><br>金運に恵まれる日。お財布の購入や使い始めに最適。</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="doc-footer">
-            <p class="footer-message">この他にも45のメソッドがあります！<br>すべての内容はLINEで配信中 💌</p>
-            <button class="cta-primary" onclick="registerLine()">
-              📱 LINEで全内容を受け取る
-            </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- マンガ表示 -->
-    <div class="page" id="mangaPage">
-      <div class="card document-view">
-        <button class="back-button" onclick="showPage('freebiesPage')">← 特典一覧に戻る</button>
+    <!-- MANGA PAGE -->
+    <section id="mangaPage" class="page">
+      <div class="card manga-content">
+        <button class="back-button" type="button" onclick="showPage('freebiesPage')">← 戻る</button>
 
-        <div class="document-header">
-          <h2 class="document-title">🎨 運命を変える開運マンガ</h2>
-          <p class="document-subtitle">〜 OL美咲の人生逆転ストーリー 〜</p>
-        </div>
+        <div class="manga-episode">
+          <div class="episode-title">マンガで分かる運気UP（サンプル）</div>
 
-        <div class="manga-content">
-          <!-- 第1話 -->
-          <div class="manga-episode">
-            <h3 class="episode-title">第1話：最悪の誕生日</h3>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="character">
-                  <div class="character-face sad">😢</div>
-                  <div class="character-body"></div>
-                </div>
-                <div class="speech-bubble">
-                  <p>「また仕事でミス...彼氏にもフられちゃった...」</p>
-                </div>
+          <div class="manga-panel">
+            <div class="panel-art sparkle">
+              <div class="character">
+                <div class="character-face">🧙‍♀️</div>
               </div>
-              <p class="panel-narration">28歳の誕生日、美咲の人生は最悪だった。</p>
-            </div>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="character">
-                  <div class="character-face normal">😐</div>
-                </div>
-                <div class="speech-bubble">
-                  <p>「なんで私だけこんなに不幸なの？」</p>
-                </div>
+              <div class="speech-bubble fortune-teller big">
+                <p>あなたの運勢は「行動」で変えられます。</p>
               </div>
-              <p class="panel-narration">会社帰り、神社の前を通りかかった美咲。</p>
-            </div>
-
-            <div class="manga-panel">
-              <div class="panel-art sparkle">
-                <div class="character mysterious">
-                  <div class="character-face">✨👵✨</div>
-                </div>
-                <div class="speech-bubble fortune-teller">
-                  <p>「あなた、今年は大殺界ですわね」</p>
-                </div>
-              </div>
-              <p class="panel-narration">突然現れた謎の占い師。</p>
-            </div>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="character">
-                  <div class="character-face surprised">😲</div>
-                </div>
-                <div class="speech-bubble">
-                  <p>「えっ！？ そうなんですか！？」</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="manga-panel highlight">
-              <div class="panel-art sparkle">
-                <div class="character mysterious">
-                  <div class="character-face">✨👵✨</div>
-                </div>
-                <div class="speech-bubble fortune-teller">
-                  <p>「でも、運命は変えられます。<br>四柱推命を学びなさい」</p>
-                </div>
-              </div>
-              <p class="panel-narration impact">そう言い残し、占い師は消えた...</p>
+              <div class="panel-narration">— まずは小さく一歩 —</div>
             </div>
           </div>
 
-          <!-- 第2話 -->
-          <div class="manga-episode">
-            <h3 class="episode-title">第2話：四柱推命との出会い</h3>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="character">
-                  <div class="character-face determined">😤</div>
-                </div>
-                <div class="speech-bubble">
-                  <p>「四柱推命...調べてみよう」</p>
-                </div>
+          <div class="manga-panel highlight">
+            <div class="panel-art">
+              <div class="info-box">
+                <h4>運気UPのコツ</h4>
+                <ul>
+                  <li>朝のルーティンを整える</li>
+                  <li>予定を3つに絞る</li>
+                  <li>感情の記録を残す</li>
+                </ul>
               </div>
-              <p class="panel-narration">その夜、美咲はスマホで検索を始めた。</p>
-            </div>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="info-box">
-                  <h4>📱 四柱推命とは？</h4>
-                  <p>生年月日から運命を読み解く<br>中国3000年の歴史を持つ占術</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="character">
-                  <div class="character-face excited">😍</div>
-                </div>
-                <div class="speech-bubble">
-                  <p>「すごい...当たってる！<br>私、金の性質なんだ」</p>
-                </div>
-              </div>
-              <p class="panel-narration">無料鑑定を試してみると、驚くほど当たっていた。</p>
-            </div>
-
-            <div class="manga-panel highlight">
-              <div class="panel-art sparkle">
-                <div class="screen-display">
-                  <p>【あなたにオススメ】<br>💎プレミアム鑑定講座<br>初月無料キャンペーン中！</p>
-                </div>
-              </div>
-              <p class="panel-narration">そこには、運命を変える講座の案内が...</p>
-            </div>
-          </div>
-
-          <!-- 第3話 -->
-          <div class="manga-episode">
-            <h3 class="episode-title">第3話：人生が変わり始めた</h3>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="character">
-                  <div class="character-face happy">😊</div>
-                </div>
-                <div class="speech-bubble">
-                  <p>「よし、登録してみよう！」</p>
-                </div>
-              </div>
-              <p class="panel-narration">美咲は講座に申し込んだ。</p>
-            </div>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="info-box">
-                  <h4>📚 学んだこと</h4>
-                  <ul>
-                    <li>✓ 自分の五行と相性</li>
-                    <li>✓ ラッキーカラーの活用</li>
-                    <li>✓ 開運日の選び方</li>
-                    <li>✓ 部屋の配置術</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="manga-panel">
-              <div class="panel-art">
-                <div class="character">
-                  <div class="character-face motivated">💪</div>
-                </div>
-                <div class="speech-bubble">
-                  <p>「よし！今日から実践するぞ！」</p>
-                </div>
-              </div>
-              <p class="panel-narration">美咲は学んだことを次々と実践し始めた。</p>
-            </div>
-
-            <div class="manga-panel timeline">
-              <div class="time-progress">
-                <div class="time-point">
-                  <span class="time-label">1週間後</span>
-                  <p>玄関を掃除したら、思いがけない臨時収入が！</p>
-                </div>
-                <div class="time-point">
-                  <span class="time-label">2週間後</span>
-                  <p>ラッキーカラーを身につけたら、上司に褒められた！</p>
-                </div>
-                <div class="time-point">
-                  <span class="time-label">1ヶ月後</span>
-                  <p>大開運日に告白されて、素敵な恋が始まった！</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="manga-panel highlight">
-              <div class="panel-art sparkle">
-                <div class="character">
-                  <div class="character-face love">😍💖</div>
-                </div>
-                <div class="speech-bubble big">
-                  <p>「四柱推命のおかげで<br>人生が変わった！」</p>
-                </div>
-              </div>
-              <p class="panel-narration impact">美咲の新しい人生が始まった――</p>
             </div>
           </div>
 
           <div class="manga-footer">
             <div class="continuation-notice">
-              <p>🎨 続きは全12話！</p>
-              <p>美咲の恋愛、仕事、お金...すべてが好転していくストーリー</p>
+              <p>続きは公式LINEで配布中の特典でご覧いただけます。</p>
             </div>
-            <button class="cta-primary" onclick="registerLine()">
-              📱 LINEで全話を読む
+            <button class="line-button" type="button" onclick="registerLine()">
+              <span class="line-icon">💚</span>
+              公式LINEに登録する
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 講座ページ -->
-    <div class="page" id="coursePage">
+    <!-- COURSE PAGE -->
+    <section id="coursePage" class="page">
       <div class="card">
-        <button class="back-button" onclick="showPage('freebiesPage')">← 戻る</button>
-
-        <h2 class="page-title">🎓 個別鑑定講座のご案内</h2>
-        <p class="page-subtitle">プロの鑑定士があなたの人生をサポート</p>
+        <button class="back-button" type="button" onclick="showPage('freebiesPage')">← 戻る</button>
 
         <div class="course-hero">
           <div class="course-value">
-            <p class="original-course-price">通常月額 ¥29,800</p>
-            <p class="special-course-price">→ 初月 ¥0</p>
-            <p class="trial-note">※ いつでも解約可能です</p>
+            <div class="original-course-price">通常 29,800円 / 月</div>
+            <div class="special-course-price">初月無料</div>
+            <div class="trial-note">※2ヶ月目以降 29,800円（デモ）</div>
           </div>
         </div>
 
         <div class="course-features">
-          <h3 class="subsection-title">
-            <span class="gold-line"></span>
-            講座の内容
-            <span class="gold-line"></span>
-          </h3>
-
+          <h2 class="section-heading">講座で得られること</h2>
           <div class="feature-list">
-            <div class="feature-item premium">
-              <div class="feature-icon">👤</div>
+            <div class="feature-item">
+              <div class="feature-icon">🧭</div>
               <div class="feature-content">
-                <h4>個別鑑定セッション（月1回・60分）</h4>
-                <p>プロの鑑定士があなた専用の鑑定を実施。人生の悩みに具体的なアドバイスを提供します。</p>
+                <h4>迷いが減る意思決定</h4>
+                <p>五行を行動指針に変換するテンプレを提供。</p>
               </div>
             </div>
-
-            <div class="feature-item premium">
+            <div class="feature-item">
+              <div class="feature-icon">📈</div>
+              <div class="feature-content">
+                <h4>運気を上げる習慣化</h4>
+                <p>継続できる仕組み化で“戻らない”変化。</p>
+              </div>
+            </div>
+            <div class="feature-item">
               <div class="feature-icon">💬</div>
               <div class="feature-content">
-                <h4>LINE相談し放題</h4>
-                <p>日々の疑問や悩みをいつでも相談可能。24時間以内に返信します。</p>
-              </div>
-            </div>
-
-            <div class="feature-item premium">
-              <div class="feature-icon">📚</div>
-              <div class="feature-content">
-                <h4>月刊開運レポート</h4>
-                <p>毎月の運勢を詳細に分析。最適な行動計画を提案します。</p>
-              </div>
-            </div>
-
-            <div class="feature-item premium">
-              <div class="feature-icon">🎥</div>
-              <div class="feature-content">
-                <h4>オンライン勉強会（月2回）</h4>
-                <p>他の受講生と一緒に学べるコミュニティ。情報交換も活発です。</p>
-              </div>
-            </div>
-
-            <div class="feature-item premium">
-              <div class="feature-icon">🎁</div>
-              <div class="feature-content">
-                <h4>会員限定特典</h4>
-                <p>開運グッズの割引、イベント優先案内など、様々な特典をご用意。</p>
+                <h4>相談の導線</h4>
+                <p>LINEで質問→行動案を整理（想定）。</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="course-cta">
-          <button class="cta-primary large" onclick="showPage('courseSignupPage')">
-            <span>🎓 初月無料で講座を始める</span>
-          </button>
-          <p class="cta-note">※ クレジットカード登録が必要です（初月は請求されません）</p>
-        </div>
-      </div>
-    </div>
+        <div class="divider"></div>
 
-    <!-- 講座申込ページ -->
-    <div class="page" id="courseSignupPage">
-      <div class="card">
-        <button class="back-button" onclick="showPage('coursePage')">← 戻る</button>
-
-        <h2 class="page-title">🎓 講座お申し込み</h2>
-
-        <div class="signup-summary">
-          <h3>プラン詳細</h3>
-          <div class="plan-details">
-            <div class="plan-item">
-              <span>個別鑑定講座（月額制）</span>
-            </div>
-            <div class="plan-price">
-              <div class="trial-info">
-                <span class="trial-label">初月無料トライアル</span>
-                <span class="trial-price">¥0</span>
-              </div>
-              <div class="regular-info">
-                <span>2ヶ月目以降</span>
-                <span class="regular-price">¥29,800/月</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h2 class="section-heading">講座申込（デモ）</h2>
 
         <form id="courseSignupForm" class="payment-form">
-          <h3 class="form-section-title">お客様情報</h3>
-
           <div class="form-group">
-            <label for="courseName">お名前 *</label>
-            <input type="text" id="courseName" required placeholder="山田 花子">
+            <label for="courseName">お名前</label>
+            <input id="courseName" type="text" required />
           </div>
 
           <div class="form-group">
-            <label for="courseEmail">メールアドレス *</label>
-            <input type="email" id="courseEmail" required placeholder="example@email.com">
+            <label for="courseEmail">メール</label>
+            <input id="courseEmail" type="email" required />
           </div>
 
           <div class="form-group">
-            <label for="coursePhone">電話番号 *</label>
-            <input type="tel" id="coursePhone" required placeholder="090-1234-5678">
-          </div>
-
-          <h3 class="form-section-title">お支払い情報</h3>
-          <p class="form-note">※ 初月は請求されませんが、カード情報の登録が必要です</p>
-
-          <div class="form-group">
-            <label for="courseCardNumber">カード番号 *</label>
-            <input type="text" id="courseCardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+            <label for="coursePhone">電話番号</label>
+            <input id="coursePhone" type="tel" required />
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="courseCardExpiry">有効期限 *</label>
-              <input type="text" id="courseCardExpiry" placeholder="MM/YY" maxlength="5">
+              <label for="courseCardNumber">カード番号</label>
+              <input id="courseCardNumber" type="text" placeholder="1234 5678 9012 3456" required />
             </div>
-
             <div class="form-group">
-              <label for="courseCardCvc">セキュリティコード *</label>
-              <input type="text" id="courseCardCvc" placeholder="123" maxlength="4">
+              <label for="courseCardExpiry">有効期限</label>
+              <input id="courseCardExpiry" type="text" placeholder="MM/YY" required />
             </div>
           </div>
 
-          <div class="cancellation-policy">
-            <h4>💡 解約について</h4>
-            <ul>
-              <li>✓ いつでも解約可能（違約金なし）</li>
-              <li>✓ 初月中に解約すれば料金は一切かかりません</li>
-              <li>✓ 解約は会員ページから簡単に手続きできます</li>
-            </ul>
+          <div class="form-group">
+            <label for="courseCardCvc">CVC</label>
+            <input id="courseCardCvc" type="text" placeholder="123" required />
           </div>
 
-          <div class="terms-checkbox">
-            <label>
-              <input type="checkbox" id="agreeCourseTerms" required>
-              <span>利用規約とプライバシーポリシーに同意します</span>
-            </label>
-          </div>
-
-          <button type="submit" class="submit-button large">
-            <span>🎓 初月無料で講座を始める</span>
+          <button class="submit-button" type="submit">
+            初月無料で申し込む（デモ）
             <span class="button-shine"></span>
           </button>
-
-          <p class="payment-note">※ 2ヶ月目から¥29,800が請求されます</p>
         </form>
       </div>
-    </div>
-
-    <footer class="footer">
-      <p>あなたの運命は、あなた自身が切り拓くもの</p>
-      <p class="copyright">© 2024 Four Pillars Fortune Premium</p>
-    </footer>
+    </section>
   </div>
 
-  <!-- LINE登録モーダル -->
-  <div class="modal" id="lineModal">
+  <!-- LINE登録モーダル（必ず class="modal" を付ける） -->
+  <div id="lineModal" class="modal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeLineModal()">✕</button>
-      <h3>📱 公式LINE登録</h3>
+      <button class="modal-close" type="button" onclick="closeLineModal()">×</button>
+      <h3>公式LINE登録</h3>
+
       <div class="qr-code">
         <div class="qr-placeholder">
           <p>QRコード</p>
-          <p style="font-size: 0.8rem;">（実際のLINE QRコードを配置）</p>
+          <p style="font-size:14px;">（実際のLINE QRコードを配置）</p>
         </div>
       </div>
+
       <p class="modal-text">スマホの方は下のボタンをタップ</p>
-      <a href="https://line.me/R/ti/p/@yourlineid" class="line-link" target="_blank">
+
+      <a class="line-link" href="https://lin.ee/7qGC2YD" target="_blank" rel="noopener">
         <button class="line-button" type="button">
           <span class="line-icon">📱</span>
-          <span>LINEで開く</span>
+          LINEで開く
         </button>
       </a>
+
       <p class="modal-note">登録後すぐに3大特典が届きます</p>
     </div>
   </div>
 
-  <script src="app.js" defer></script>
+  <script src="./app.js"></script>
 </body>
 </html>
+
